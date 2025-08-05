@@ -20,19 +20,21 @@ for school_url in school_urls:
     school_name = school_url.split("/")[5]  # e.g., 'michigan-state'
     data = requests.get(school_url).text
     soup = BeautifulSoup(data, 'lxml')
-    stats = soup.find('table', id="season-total_per_game")
+    stats = soup.find('table', id="players_per_game")  # Find the table with id 'players_per_game'
     if stats is None:
         print(f"No season-total_per_game table found for {school_name} at {school_url}")
         continue
 
     # Convert it into a DataFrame
     school_data = pd.read_html(str(stats))[0]
+    school_data = school_data.iloc[:, 1:-1]  # Drop first and last columns
+    school_data = school_data[school_data['Player'] != 'Team Totals']  # Remove bottom row
     school_data["School"] = school_name
     bigten.append(school_data)
     time.sleep(5)
 
 stat_df = pd.concat(bigten) ## concatenating all of the stats
-stat_df.to_csv("bigtenteamstats.csv") ## importing to csv
+stat_df.to_csv("bigtenplayerstats.csv", index=False) ## importing to csv
 
 
 
