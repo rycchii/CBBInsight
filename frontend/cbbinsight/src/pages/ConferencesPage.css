@@ -1,0 +1,312 @@
+.conferences-page {
+  padding: 2rem;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.conferences-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f5f5; /* Ensure container matches */
+}
+
+.conferences-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2c3e50;
+  background: #f5f5f5; /* Ensure header area matches */
+}
+
+.conferences-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.header-icon {
+  color: #ff6b35;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Remove description paragraph by hiding it */
+.conferences-header p {
+  display: none;
+}
+
+/* Search Section */
+.search-section {
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  background: #f5f5f5; /* Ensure search section matches */
+}
+
+.search-bar {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  z-index: 10;
+  background: #f5f5f5; /* Ensure search bar container matches */
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  background: #f5f5f5; /* Matches page background */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  z-index: 10;
+  color: #2c3e50;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-input::placeholder {
+  color: #666; /* Make placeholder text gray for better contrast */
+}
+
+.search-input:focus {
+  background: white; /* Change to white on focus for better visibility while typing */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  z-index: 10; /* Keep it below navbar even when focused */
+  color: #2c3e50; /* Ensure text stays dark when focused */
+  border-color: #ff6b35; /* Orange border on focus */
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+  z-index: 11; /* Slightly higher than input but still below navbar */
+}
+
+.search-results {
+  color: #2c3e50; /* Changed from white to dark color */
+  margin-top: 1rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Conference Grid - Exactly 4 columns on desktop */
+.conferences-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  background: #f5f5f5; /* Ensure grid container matches */
+}
+
+.conference-card {
+  background: #f5f5f5; /* Matches page background */
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  min-height: 140px;
+}
+
+.conference-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  border-color: #ff6b35;
+  background: white; /* Change to white on hover for contrast */
+}
+
+.conference-logo {
+  margin-bottom: 0.75rem;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conference-image {
+  max-width: 50px;
+  max-height: 50px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.placeholder-logo {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #ff6b35, #f9844a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.placeholder-icon {
+  font-size: 1.3rem;
+  color: white;
+}
+
+.conference-info h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.conference-full-name {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.conference-stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Loading and error states */
+.loading-state, .error-state {
+  text-align: center;
+  color: #2c3e50; /* Changed from white to dark color */
+  padding: 4rem 2rem;
+}
+
+.loading-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ff6b35;
+}
+
+.retry-button {
+  background: #ff6b35;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #e55a2b;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  color: #2c3e50; /* Changed from white to dark color */
+  margin-top: 3rem;
+}
+
+.no-results-icon {
+  font-size: 3rem;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.no-results p {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .conferences-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .conferences-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 1.25rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .conferences-container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .conferences-header h1 {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .conferences-grid {
+    grid-template-columns: repeat(2, 1fr); /* Still 2 columns on small tablets */
+    gap: 1rem;
+    padding: 0;
+  }
+  
+  .conference-card {
+    padding: 1rem;
+    min-height: 120px;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .conferences-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.75rem;
+  }
+  
+  .conferences-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .conference-card {
+    min-height: 100px;
+  }
+}

@@ -1,0 +1,293 @@
+.schools-page {
+  padding: 2rem;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.schools-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f5f5;
+}
+
+.schools-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2c3e50;
+  background: #f5f5f5;
+}
+
+.schools-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Search Section */
+.search-section {
+  margin-bottom: 3rem;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  background: #f5f5f5;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+  z-index: 10;
+  background: #f5f5f5;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  background: #f5f5f5;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  z-index: 10;
+  color: #2c3e50;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-input::placeholder {
+  color: #666;
+}
+
+.search-input:focus {
+  background: white;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  z-index: 10;
+  color: #2c3e50;
+  border-color: #ff6b35;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 1.1rem;
+  z-index: 11;
+}
+
+.search-results {
+  color: #2c3e50;
+  margin-top: 1rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+/* Schools Grid - More columns for smaller buttons */
+.schools-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 columns for smaller cards */
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  background: #f5f5f5;
+}
+
+.school-card {
+  background: #f5f5f5;
+  border-radius: 8px; /* Smaller border radius */
+  padding: 0.75rem; /* Smaller padding */
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  min-height: 100px; /* Smaller height */
+}
+
+.school-card:hover {
+  transform: translateY(-3px); /* Smaller hover effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-color: #ff6b35;
+  background: white;
+}
+
+.school-logo {
+  margin-bottom: 0.5rem; /* Smaller margin */
+  height: 35px; /* Smaller logo area */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-logo {
+  width: 35px; /* Smaller logo */
+  height: 35px;
+  background: linear-gradient(135deg, #ff6b35, #f9844a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.placeholder-icon {
+  font-size: 1rem; /* Smaller icon */
+  color: white;
+}
+
+.school-info h3 {
+  font-size: 0.9rem; /* Smaller text */
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.school-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.school-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  font-size: 0.7rem; /* Smaller stats text */
+  color: #666;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.conference-tag {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  padding: 0.15rem 0.4rem;
+  border-radius: 12px;
+  font-size: 0.6rem;
+  font-weight: 500;
+}
+
+/* Loading and error states */
+.loading-state, .error-state {
+  text-align: center;
+  color: #2c3e50;
+  padding: 4rem 2rem;
+}
+
+.loading-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ff6b35;
+}
+
+.retry-button {
+  background: #ff6b35;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.retry-button:hover {
+  background: #e55a2b;
+}
+
+/* No Results */
+.no-results {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 3rem;
+}
+
+.no-results-icon {
+  font-size: 3rem;
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.no-results p {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .schools-grid {
+    grid-template-columns: repeat(5, 1fr); /* 5 columns on medium screens */
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .schools-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on tablets */
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .schools-container {
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .schools-header h1 {
+    font-size: 2rem;
+  }
+
+  .schools-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on small tablets */
+    gap: 0.75rem;
+    padding: 0;
+  }
+  
+  .school-card {
+    padding: 0.5rem;
+    min-height: 80px;
+  }
+
+  .search-input {
+    font-size: 1rem;
+    padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .schools-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+    gap: 0.5rem;
+  }
+  
+  .schools-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .school-card {
+    min-height: 70px;
+  }
+  
+  .school-info h3 {
+    font-size: 0.8rem;
+  }
+}
