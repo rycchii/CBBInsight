@@ -7,9 +7,6 @@ import { getConferenceAbbreviation } from '../utils/conferenceUtils' // Add this
 import type { Player, School } from '../services/api' // Import interfaces from API service
 import './ConferenceDetailPage.css'
 
-// Remove the local interfaces and use the ones from API service
-// interface School { ... } - REMOVE THIS
-// interface Player { ... } - REMOVE THIS
 
 interface Conference {
   id: number;
