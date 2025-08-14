@@ -8,13 +8,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CbbInsightApplication {
 
 	public static void main(String[] args) {
-		// Load variables from .env
-		Dotenv dotenv = Dotenv.load();
+		// Load .env file only if it exists (for local development)
+		try {
+			Dotenv dotenv = Dotenv.configure()
+					.ignoreIfMissing() // This is the key fix!
+					.load();
 
-		// Set system properties so Spring can use them in application.properties
-		System.setProperty("spring.datasource.url", dotenv.get("DB_URL"));
-		System.setProperty("spring.datasource.username", dotenv.get("DB_USERNAME"));
-		System.setProperty("spring.datasource.password", dotenv.get("DB_PASSWORD"));
+			// Set environment variables from .env file
+			dotenv.entries().forEach(entry -> {
+				System.setProperty(entry.getKey(), entry.getValue());
+			});
+		} catch (Exception e) {
+			// Ignore if .env file doesn't exist (production environment)
+			System.out.println("No .env file found, using system environment variables");
+		}
 
 		SpringApplication.run(CbbInsightApplication.class, args);
 	}

@@ -1,5 +1,7 @@
 ### Local Environment variables ###
 .env
+.env.local
+.env.production
 
 HELP.md
 target/
