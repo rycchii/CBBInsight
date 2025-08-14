@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import backgroundVideo from '../assets/intro.mp4'; // Update with your video file name
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -16,7 +15,7 @@ const HomePage: React.FC = () => {
         loop 
         playsInline
       >
-        <source src={backgroundVideo} type="video/mp4" />
+        <source src="/intro.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       

@@ -1,26 +1,21 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './DashboardPage.css';
-import conferencesImage from '../assets/buttonimages/conferences.jpeg';
-import teamsImage from '../assets/buttonimages/teams.jpg'
-import playersImage from '../assets/buttonimages/players.avif';
-import positionImage from '../assets/buttonimages/positions.jpg';
-import insightImage from '../assets/buttonimages/insight.png';
 
 const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
 
   const dashboardItems = [
-    { title: 'Players', path: '/players', image: playersImage },
-    { title: 'Schools', path: '/schools', image: teamsImage },
-    { title: 'Conferences', path: '/conferences', image: conferencesImage },
-    { title: 'Positions', path: '/positions', image: positionImage },
-    { title: 'Insight', path: '/insight', image: insightImage },
+    { title: 'Players', path: '/players', image: '/images/buttonimages/players.avif' },
+    { title: 'Schools', path: '/schools', image: '/images/buttonimages/teams.jpg' },
+    { title: 'Conferences', path: '/conferences', image: '/images/buttonimages/conferences.jpeg' },
+    { title: 'Positions', path: '/positions', image: '/images/buttonimages/positions.jpg' },
+    { title: 'Insight', path: '/insight', image: '/images/buttonimages/insight.png' },
   ];
 
   return (
     <>
-      <div className="dashboard-page"></div> {/* Full page background */}
+      <div className="dashboard-page"></div>
       <div className="dashboard-container">
         {dashboardItems.map((item) => (
           <button

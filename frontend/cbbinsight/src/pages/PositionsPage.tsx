@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faSpinner, faUsers} from '@fortawesome/free-solid-svg-icons'
 import { apiService } from '../services/api'
 import './PositionsPage.css'
-import guardIcon from '../assets/buttonimages/guard.webp'
-import forwardIcon from '../assets/buttonimages/forward.jpg'
-import centerIcon from '../assets/buttonimages/center.webp'
 
 interface Position {
   name: string;
@@ -15,35 +12,36 @@ interface Position {
   image?: string;
 }
 
-const positions: Position[] = [
-  {
-    name: 'Guards',
-    abbreviation: 'G',
-    playerCount: 0,
-    description: 'Point Guards & Shooting Guards',
-    image: guardIcon
-  },
-  {
-    name: 'Forwards',
-    abbreviation: 'F',
-    playerCount: 0,
-    description: 'Small Forwards & Power Forwards',
-    image: forwardIcon
-  },
-  {
-    name: 'Centers',
-    abbreviation: 'C',
-    playerCount: 0,
-    description: 'Centers & Big Men',
-    image: centerIcon
-  }
-]
-
 const PositionsPage: React.FC = () => {
   const [searchTerm] = useState('')
-  const [positionsData, setPositionsData] = useState<Position[]>(positions)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const positions: Position[] = [
+    {
+      name: 'Guards',
+      abbreviation: 'G',
+      playerCount: 0,
+      description: 'Point Guards & Shooting Guards',
+      image: '/images/buttonimages/guard.webp'
+    },
+    {
+      name: 'Forwards',
+      abbreviation: 'F',
+      playerCount: 0,
+      description: 'Small Forwards & Power Forwards',
+      image: '/images/buttonimages/forward.jpg'
+    },
+    {
+      name: 'Centers',
+      abbreviation: 'C',
+      playerCount: 0,
+      description: 'Centers & Big Men',
+      image: '/images/buttonimages/center.webp'
+    }
+  ]
+
+  const [positionsData, setPositionsData] = useState<Position[]>(positions)
 
   useEffect(() => {
     loadPositionsData()
@@ -73,10 +71,10 @@ const PositionsPage: React.FC = () => {
       setError(null)
       
       console.log('Position counts:', positionCounts)
-      
-    } catch (err) {
-      setError('Failed to load positions data. Make sure your Spring Boot backend is running on localhost:8080')
-      console.error('Error loading positions:', err)
+
+    } catch (error) {
+      console.error('Error loading positions data:', error)
+      setError('Failed to load positions data')
     } finally {
       setLoading(false)
     }
@@ -138,7 +136,6 @@ const PositionsPage: React.FC = () => {
           </h1>
         </div>
 
-
         {/* Positions Grid */}
         <div className="positions-grid">
           {filteredPositions.map((position, index) => (
@@ -158,7 +155,7 @@ const PositionsPage: React.FC = () => {
                 <p className="position-description">{position.description}</p>
                 <div className="position-stats">
                   <span className="stat-item">
-                    <FontAwesomeIcon icon="users" /> {position.playerCount || 0} players
+                    <FontAwesomeIcon icon={faUsers} /> {position.playerCount || 0} players
                   </span>
                 </div>
               </div>

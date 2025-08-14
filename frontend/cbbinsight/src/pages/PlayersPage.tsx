@@ -19,7 +19,7 @@ interface Player {
   twop_per_game: number;
   twopa_per_game: number;
   twop_percentage: number;
-  efg: number;
+  efg?: number;
   ft_per_game: number;
   fta_per_game: number;
   ft_percentage: number;
