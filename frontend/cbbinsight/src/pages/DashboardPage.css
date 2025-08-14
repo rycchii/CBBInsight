@@ -1,15 +1,24 @@
-/* Remove background from dashboard-container and add to body */
+/* Remove background from body - this was affecting all pages */
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: #f5f5f5;
+}
+
+/* Apply background to the entire page for dashboard only */
+.dashboard-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-image: url('../assets/backgrounds/ncaabasketball.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Keeps background fixed during scroll */
-  background-color: #2c3e50; /* Fallback color */
-  min-height: 100vh;
+  background-color: #2c3e50;
+  z-index: 1;
 }
 
 .dashboard-container {
@@ -20,24 +29,10 @@ body {
   padding: 2rem;
   margin-top: 64px;
   min-height: calc(100vh - 64px);
-  position: relative;
-  background: transparent; /* Make container completely transparent */
+  position: relative; /* Remove background from container */
 }
 
-/* Remove or comment out this overlay */
-/*
-.dashboard-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 0;
-}
-*/
-
+/* Remove the .dashboard-page wrapper entirely if using this approach */
 .dashboard-button {
   position: relative;
   width: 300px;
@@ -47,7 +42,7 @@ body {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  background: transparent; /* Ensure buttons are transparent */
+  background: transparent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -65,17 +60,18 @@ body {
   height: 100%;
   background-size: cover;
   background-position: center;
-  z-index: 1; /* Make sure button images are visible */
 }
 
 .button-title {
-  position: absolute; /* Changed from relative to absolute */
+  position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center the text */
-  z-index: 2; /* Make sure text is above the button image */
+  transform: translate(-50%, -50%);
+  z-index: 2;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Stronger text shadow for better readability */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
 }

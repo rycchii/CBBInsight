@@ -1,19 +1,20 @@
 .schools-page {
-  padding: 2rem;
+  padding: 0; /* Remove top padding */
   background: #f5f5f5;
-  min-height: 100vh;
+  min-height: 20vh;
 }
 
 .schools-container {
   max-width: 1400px;
   margin: 0 auto;
   background: #f5f5f5;
+  padding-top: 1rem; /* Add padding here instead */
 }
 
 .schools-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: #2c3e50;
+  color: #222;
   background: #f5f5f5;
 }
 
@@ -25,35 +26,28 @@
 
 /* Search Section */
 .search-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 3rem;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  background: #f5f5f5;
 }
 
 .search-bar {
   position: relative;
+  width: 100%;
   max-width: 500px;
-  margin: 0 auto;
-  z-index: 10;
-  background: #f5f5f5;
 }
 
 .search-input {
   width: 100%;
   padding: 1rem 1rem 1rem 3rem;
-  font-size: 1.1rem;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
-  background: #f5f5f5;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 1.1rem;
   outline: none;
-  position: relative;
-  z-index: 10;
-  color: #2c3e50;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .search-input::placeholder {
@@ -61,12 +55,8 @@
 }
 
 .search-input:focus {
-  background: white;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
-  z-index: 10;
-  color: #2c3e50;
   border-color: #ff6b35;
+  box-shadow: 0 6px 30px rgba(255, 107, 53, 0.3);
 }
 
 .search-icon {
@@ -75,15 +65,16 @@
   top: 50%;
   transform: translateY(-50%);
   color: #666;
-  font-size: 1.1rem;
-  z-index: 11;
+  font-size: 1.2rem;
+  pointer-events: none;
 }
 
 .search-results {
-  color: #2c3e50;
   margin-top: 1rem;
-  opacity: 0.8;
+  color: white;
+  opacity: 0.9;
   font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
 /* Schools Grid - More columns for smaller buttons */
@@ -97,22 +88,27 @@
 }
 
 .school-card {
-  background: #f5f5f5;
-  border-radius: 8px; /* Smaller border radius */
-  padding: 0.75rem; /* Smaller padding */
+  background: #f8f9fa; /* Fallback background */
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* Smaller shadow */
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  min-height: 100px; /* Smaller height */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .school-card:hover {
-  transform: translateY(-3px); /* Smaller hover effect */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   border-color: #ff6b35;
-  background: white;
 }
 
 .school-logo {
@@ -139,6 +135,12 @@
   color: white;
 }
 
+.school-info {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
 .school-info h3 {
   font-size: 0.9rem; /* Smaller text */
   font-weight: bold;
@@ -148,35 +150,44 @@
 }
 
 .school-name {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #2c3e50;
-  margin-bottom: 0.25rem;
-  line-height: 1.2;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .school-stats {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  justify-content: center;
   align-items: center;
-  font-size: 0.7rem; /* Smaller stats text */
-  color: #666;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #2c3e50;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .conference-tag {
-  background: rgba(255, 107, 53, 0.1);
-  color: #ff6b35;
-  padding: 0.15rem 0.4rem;
+  background: linear-gradient(135deg, #ff6b35, #f9844a);
+  color: white;
+  padding: 0.25rem 0.75rem;
   border-radius: 12px;
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
 }
 
 /* Loading and error states */

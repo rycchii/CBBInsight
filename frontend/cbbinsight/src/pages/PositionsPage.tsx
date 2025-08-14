@@ -1,45 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faSpinner, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faSpinner} from '@fortawesome/free-solid-svg-icons'
 import { apiService } from '../services/api'
 import './PositionsPage.css'
+import guardIcon from '../assets/buttonimages/guard.webp'
+import forwardIcon from '../assets/buttonimages/forward.jpg'
+import centerIcon from '../assets/buttonimages/center.webp'
 
 interface Position {
   name: string;
   abbreviation: string;
   playerCount?: number;
+  description?: string;
+  image?: string;
 }
 
 const positions: Position[] = [
   {
-    name: 'Point Guard',
-    abbreviation: 'PG',
-    playerCount: 0
+    name: 'Guards',
+    abbreviation: 'G',
+    playerCount: 0,
+    description: 'Point Guards & Shooting Guards',
+    image: guardIcon
   },
   {
-    name: 'Shooting Guard',
-    abbreviation: 'SG',
-    playerCount: 0
+    name: 'Forwards',
+    abbreviation: 'F',
+    playerCount: 0,
+    description: 'Small Forwards & Power Forwards',
+    image: forwardIcon
   },
   {
-    name: 'Small Forward',
-    abbreviation: 'SF',
-    playerCount: 0
-  },
-  {
-    name: 'Power Forward',
-    abbreviation: 'PF',
-    playerCount: 0
-  },
-  {
-    name: 'Center',
+    name: 'Centers',
     abbreviation: 'C',
-    playerCount: 0
+    playerCount: 0,
+    description: 'Centers & Big Men',
+    image: centerIcon
   }
 ]
 
 const PositionsPage: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm] = useState('')
   const [positionsData, setPositionsData] = useState<Position[]>(positions)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -53,10 +54,11 @@ const PositionsPage: React.FC = () => {
       setLoading(true)
       const players = await apiService.getAllPlayers()
       
-      // Count players by position
+      // Count players by position (G, F, C)
       const positionCounts = players.reduce((acc, player) => {
         if (player.position) {
-          acc[player.position] = (acc[player.position] || 0) + 1
+          const pos = player.position.toUpperCase()
+          acc[pos] = (acc[pos] || 0) + 1
         }
         return acc
       }, {} as Record<string, number>)
@@ -69,6 +71,9 @@ const PositionsPage: React.FC = () => {
 
       setPositionsData(updatedPositions)
       setError(null)
+      
+      console.log('Position counts:', positionCounts)
+      
     } catch (err) {
       setError('Failed to load positions data. Make sure your Spring Boot backend is running on localhost:8080')
       console.error('Error loading positions:', err)
@@ -80,18 +85,19 @@ const PositionsPage: React.FC = () => {
   // Filter positions based on search term
   const filteredPositions = positionsData.filter(position =>
     position.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    position.abbreviation.toLowerCase().includes(searchTerm.toLowerCase())
+    position.abbreviation.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    position.description?.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   const handlePositionClick = async (position: Position) => {
     try {
-      // Example: Load players for this position
       const players = await apiService.getAllPlayers()
-      const positionPlayers = players.filter(player => player.position === position.abbreviation)
+      const positionPlayers = players.filter(player => 
+        player.position?.toUpperCase() === position.abbreviation
+      )
       console.log(`${position.name} has ${positionPlayers.length} players:`, positionPlayers)
       
-      // TODO: Navigate to position detail page or show players
-      // Example: navigate(`/positions/${position.abbreviation.toLowerCase()}`)
+      // TODO: Navigate to position detail page
     } catch (error) {
       console.error('Error loading position players:', error)
     }
@@ -99,13 +105,11 @@ const PositionsPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="positions-page">
-        <div className="positions-container">
-          <div className="loading-state">
-            <FontAwesomeIcon icon={faSpinner} spin className="loading-icon" />
-            <h2>Loading Positions...</h2>
-            <p>Fetching data from Spring Boot API...</p>
-          </div>
+      <div className="positions-container">
+        <div className="loading-state">
+          <FontAwesomeIcon icon={faSpinner} spin className="loading-icon" />
+          <h2>Loading Positions...</h2>
+          <p>Fetching data from Spring Boot API...</p>
         </div>
       </div>
     )
@@ -113,15 +117,13 @@ const PositionsPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="positions-page">
-        <div className="positions-container">
-          <div className="error-state">
-            <h2>Error Loading Positions</h2>
-            <p>{error}</p>
-            <button onClick={loadPositionsData} className="retry-button">
-              Try Again
-            </button>
-          </div>
+      <div className="positions-container">
+        <div className="error-state">
+          <h2>Error Loading Positions</h2>
+          <p>{error}</p>
+          <button onClick={loadPositionsData} className="retry-button">
+            Try Again
+          </button>
         </div>
       </div>
     )
@@ -132,29 +134,10 @@ const PositionsPage: React.FC = () => {
       <div className="positions-container">
         <div className="positions-header">
           <h1>
-            <FontAwesomeIcon icon={faMapMarkerAlt} className="header-icon" />
             Basketball Positions
           </h1>
         </div>
 
-        {/* Search Bar */}
-        <div className="search-section">
-          <div className="search-bar">
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search positions..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-          </div>
-          {searchTerm && (
-            <p className="search-results">
-              Showing {filteredPositions.length} of {positionsData.length} positions
-            </p>
-          )}
-        </div>
 
         {/* Positions Grid */}
         <div className="positions-grid">
@@ -164,13 +147,20 @@ const PositionsPage: React.FC = () => {
               className="position-card"
               onClick={() => handlePositionClick(position)}
             >
-              <div className="position-logo">
-                <div className="placeholder-logo">
-                  <span className="position-abbreviation">{position.abbreviation}</span>
-                </div>
-              </div>
+              <div 
+                className="position-background"
+                style={position.image ? { backgroundImage: `url(${position.image})` } : {
+                  background: 'linear-gradient(135deg, #ff6b35, #f9844a)'
+                }}
+              />
               <div className="position-info">
                 <h3 className="position-name">{position.name}</h3>
+                <p className="position-description">{position.description}</p>
+                <div className="position-stats">
+                  <span className="stat-item">
+                    <FontAwesomeIcon icon="users" /> {position.playerCount || 0} players
+                  </span>
+                </div>
               </div>
             </div>
           ))}
@@ -178,7 +168,7 @@ const PositionsPage: React.FC = () => {
 
         {filteredPositions.length === 0 && searchTerm && (
           <div className="no-results">
-            <FontAwesomeIcon icon="search" className="no-results-icon" />
+            <FontAwesomeIcon icon={faSearch} className="no-results-icon" />
             <h3>No positions found</h3>
             <p>Try adjusting your search term</p>
           </div>

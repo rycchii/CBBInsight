@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import basketballGif from '../assets/dirtysprite.gif';  // im gonna make my own gif later
+import backgroundVideo from '../assets/intro.mp4'; // Update with your video file name
 import './HomePage.css';
 
 const HomePage: React.FC = () => {
@@ -8,17 +8,30 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage-container">
-      <img
-        src={basketballGif}
-        alt="Basketball Animation"
-        className="homepage-gif"
-      />
-      <button
-        className="get-started-btn"
-        onClick={() => navigate('/dashboard')}
+      {/* Background Video */}
+      <video 
+        className="background-video"
+        autoPlay 
+        muted 
+        loop 
+        playsInline
       >
-        Get Started
-      </button>
+        <source src={backgroundVideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      
+      {/* Content Overlay */}
+      <div className="homepage-content">
+        <div className="homepage-text">
+        </div>
+        
+        <button
+          className="get-started-btn"
+          onClick={() => navigate('/dashboard')}
+        >
+          Get Started
+        </button>
+      </div>
     </div>
   );
 };

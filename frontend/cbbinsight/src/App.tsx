@@ -6,6 +6,8 @@ import DashboardPage from './pages/DashboardPage'
 import ConferencesPage from './pages/ConferencesPage'
 import SchoolsPage from './pages/SchoolsPage'
 import PositionsPage from './pages/PositionsPage' // Add this import
+import ConferenceDetailPage from './pages/ConferenceDetailPage'
+import PlayersPage from './pages/PlayersPage' // Add this import
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHome, faSearch, faUsers, faBasketball, faFlag, faTrophy, faShirt, faSpinner, faChartBar, faGraduationCap, faMapMarkerAlt, faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
@@ -20,9 +22,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/conferences" element={<ConferencesPage />} />
+        <Route path="/conferences/:conferenceId" element={<ConferenceDetailPage />} /> {/* Make sure this route exists */}
         <Route path="/schools" element={<SchoolsPage />} />
         <Route path="/positions" element={<PositionsPage />} /> {/* Add this route */}
-        {/* TODO: Add routes for /players, /insight */}
+        <Route path="/players" element={<PlayersPage />} /> {/* Add this route */}
+        {/* TODO: Add routes for /insight */}
       </Routes>
     </Router>
   )

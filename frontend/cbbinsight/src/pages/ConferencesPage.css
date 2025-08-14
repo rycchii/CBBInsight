@@ -1,20 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #f5f5f5;
+}
+
+/* Background wrapper for conferences page only */
 .conferences-page {
-  padding: 2rem;
-  background: #f5f5f5;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../assets/backgrounds/champs.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #2c3e50;
+  z-index: 0; /* Put behind content */
 }
 
 .conferences-container {
   max-width: 1400px;
   margin: 0 auto;
-  background: #f5f5f5; /* Ensure container matches */
+  background: transparent; /* Make transparent */
+  padding: 2rem;
+  margin-top: 64px; /* Account for navbar */
+  min-height: calc(100vh - 64px);
+  position: relative; /* Allow scrolling */
+  z-index: 1; /* Above background */
 }
 
 .conferences-header {
   text-align: center;
   margin-bottom: 3rem;
-  color: #2c3e50;
-  background: #f5f5f5; /* Ensure header area matches */
+  color: white; /* Change to white for better visibility */
+  background: transparent;
 }
 
 .conferences-header h1 {
@@ -25,6 +46,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  color: white; /* White text for better visibility */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Add text shadow */
 }
 
 .header-icon {
@@ -44,18 +67,12 @@
   }
 }
 
-/* Remove description paragraph by hiding it */
-.conferences-header p {
-  display: none;
-}
-
 /* Search Section */
 .search-section {
   margin-bottom: 3rem;
   text-align: center;
   position: relative;
-  z-index: 10;
-  background: #f5f5f5; /* Ensure search section matches */
+  z-index: 10; /* Changed from -1 to 10 */
 }
 
 .search-bar {
@@ -63,7 +80,6 @@
   max-width: 500px;
   margin: 0 auto;
   z-index: 10;
-  background: #f5f5f5; /* Ensure search bar container matches */
 }
 
 .search-input {
@@ -72,27 +88,27 @@
   font-size: 1.1rem;
   border: none;
   border-radius: 50px;
-  background: #f5f5f5; /* Matches page background */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.3); /* More transparent */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   outline: none;
   position: relative;
-  z-index: 10;
-  color: #2c3e50;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  color: white; /* Change text to white */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* White border */
 }
 
 .search-input::placeholder {
-  color: #666; /* Make placeholder text gray for better contrast */
+  color: rgba(255, 255, 255, 0.8); /* White placeholder */
 }
 
 .search-input:focus {
-  background: white; /* Change to white on focus for better visibility while typing */
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  background: white;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
-  z-index: 10; /* Keep it below navbar even when focused */
-  color: #2c3e50; /* Ensure text stays dark when focused */
-  border-color: #ff6b35; /* Orange border on focus */
+  z-index: 10;
+  color: #2c3e50;
+  border-color: #ff6b35;
 }
 
 .search-icon {
@@ -100,45 +116,53 @@
   left: 1rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #666;
-  font-size: 1.1rem;
-  z-index: 11; /* Slightly higher than input but still below navbar */
+  color: rgba(255, 255, 255, 0.8); /* White icon */
+  font-size: 1.2rem; /* Make it slightly bigger */
+  z-index: 5; /* Higher z-index to ensure visibility */
+  pointer-events: none; /* Prevent blocking clicks */
+}
+
+.search-input:focus + .search-icon,
+.search-input:focus ~ .search-icon {
+  color: #666; /* Darker color when input is focused */
 }
 
 .search-results {
-  color: #2c3e50; /* Changed from white to dark color */
+  color: rgb(255, 255, 255); /* White text for visibility */
   margin-top: 1rem;
-  opacity: 0.8;
+  opacity: 0.9;
   font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
 }
 
-/* Conference Grid - Exactly 4 columns on desktop */
+/* Conference Grid */
 .conferences-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 2rem;
   padding: 0 2rem;
-  background: #f5f5f5; /* Ensure grid container matches */
+  background: transparent;
 }
 
 .conference-card {
-  background: #f5f5f5; /* Matches page background */
+  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
   border-radius: 12px;
   padding: 1.25rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.1);
   min-height: 140px;
+  backdrop-filter: blur(10px); /* Add blur effect */
 }
 
 .conference-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   border-color: #ff6b35;
-  background: white; /* Change to white on hover for contrast */
+  background: white;
 }
 
 .conference-logo {
@@ -203,8 +227,9 @@
 /* Loading and error states */
 .loading-state, .error-state {
   text-align: center;
-  color: #2c3e50; /* Changed from white to dark color */
+  color: white; /* White text for visibility */
   padding: 4rem 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .loading-icon {
@@ -223,23 +248,27 @@
   cursor: pointer;
   margin-top: 1rem;
   transition: background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .retry-button:hover {
   background: #e55a2b;
+  transform: translateY(-2px);
 }
 
 /* No Results */
 .no-results {
   text-align: center;
-  color: #2c3e50; /* Changed from white to dark color */
+  color: white; /* White text for visibility */
   margin-top: 3rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .no-results-icon {
   font-size: 3rem;
-  opacity: 0.5;
+  opacity: 0.7;
   margin-bottom: 1rem;
+  color: #ff6b35;
 }
 
 .no-results h3 {
@@ -248,20 +277,20 @@
 }
 
 .no-results p {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .conferences-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 }
 
 @media (max-width: 900px) {
   .conferences-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
     padding: 0 1rem;
   }
@@ -280,7 +309,7 @@
   }
 
   .conferences-grid {
-    grid-template-columns: repeat(2, 1fr); /* Still 2 columns on small tablets */
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     padding: 0;
   }
@@ -298,7 +327,7 @@
 
 @media (max-width: 480px) {
   .conferences-grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
   

@@ -32,7 +32,22 @@ const Navbar: React.FC = () => {
               <FontAwesomeIcon icon={faHome} />
               <span>Home</span>
             </Link>
-            
+
+            <Link 
+              to="/players" 
+              className={`navbar-link ${isActive('/players') ? 'active' : ''}`}
+            >
+              <FontAwesomeIcon icon={faUsers} />
+              <span>Players</span>
+            </Link>
+
+            <Link 
+              to="/schools" 
+              className={`navbar-link ${isActive('/schools') ? 'active' : ''}`}
+            >
+              <FontAwesomeIcon icon={faGraduationCap} />
+              <span>Schools</span>
+            </Link>
             <Link 
               to="/conferences" 
               className={`navbar-link ${isActive('/conferences') ? 'active' : ''}`}
@@ -41,21 +56,6 @@ const Navbar: React.FC = () => {
               <span>Conferences</span>
             </Link>
             
-            <Link 
-              to="/schools" 
-              className={`navbar-link ${isActive('/schools') ? 'active' : ''}`}
-            >
-              <FontAwesomeIcon icon={faGraduationCap} />
-              <span>Schools</span>
-            </Link>
-            
-            <Link 
-              to="/players" 
-              className={`navbar-link ${isActive('/players') ? 'active' : ''}`}
-            >
-              <FontAwesomeIcon icon={faUsers} />
-              <span>Players</span>
-            </Link>
             
             <Link 
               to="/positions" 
