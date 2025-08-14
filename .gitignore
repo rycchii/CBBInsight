@@ -1,4 +1,66 @@
-# Python
+# Java/Spring Boot
+*.class
+/target/
+/build/
+*.log
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+
+# Node.js/React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/build/
+/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+application-local.properties
+
+# Database
+*.db
+*.sqlite
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Data files (if you have sensitive data)
+*.csv
+*.json
+*.xlsx
+
+# Python (if you have any scripts)
 __pycache__/
 *.py[cod]
 *$py.class
@@ -10,23 +72,16 @@ ENV/
 env.bak/
 venv.bak/
 
-# Data files (optional - you might want to include small sample data)
-*.csv
-*.json
-*.xlsx
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
-.DS_Store
-Thumbs.db
-
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
-# Environment variables
-.envfrontend/
+# Package files
+*.tgz
+*.tar.gz
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Dependencies
+package-lock.json (optional - some teams commit this)
