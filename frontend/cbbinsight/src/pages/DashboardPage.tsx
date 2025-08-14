@@ -6,11 +6,11 @@ const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
 
   const dashboardItems = [
-    { title: 'Players', path: '/players', image: '/public/buttonimages/players.avif' },
-    { title: 'Schools', path: '/schools', image: '/public/buttonimages/teams.jpg' },
-    { title: 'Conferences', path: '/conferences', image: '/public/buttonimages/conferences.jpeg' },
-    { title: 'Positions', path: '/positions', image: '/public/buttonimages/positions.jpg' },
-    { title: 'Insight', path: '/insight', image: '/public/buttonimages/insight.png' },
+    { title: 'Players', path: '/players', image: '/buttonimages/players.avif' },
+    { title: 'Schools', path: '/schools', image: '/buttonimages/teams.jpg' },
+    { title: 'Conferences', path: '/conferences', image: '/buttonimages/conferences.jpeg' },
+    { title: 'Positions', path: '/positions', image: '/buttonimages/positions.jpg' },
+    { title: 'Insight', path: '/insight', image: '/buttonimages/insight.png' },
   ];
 
   return (
