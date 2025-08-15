@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../assets/backgrounds/court.jpg');
+  background-image: url('/backgrounds/court.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

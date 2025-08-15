@@ -23,21 +23,21 @@ const PositionsPage: React.FC = () => {
       abbreviation: 'G',
       playerCount: 0,
       description: 'Point Guards & Shooting Guards',
-      image: '/public/buttonimages/guard.webp'
+      image: '/buttonimages/guard.webp'
     },
     {
       name: 'Forwards',
       abbreviation: 'F',
       playerCount: 0,
       description: 'Small Forwards & Power Forwards',
-      image: '/public/buttonimages/forward.jpg'
+      image: '/buttonimages/forward.jpg'
     },
     {
       name: 'Centers',
       abbreviation: 'C',
       playerCount: 0,
       description: 'Centers & Big Men',
-      image: '/public/buttonimages/center.webp'
+      image: '/buttonimages/center.webp'
     }
   ]
 

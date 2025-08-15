@@ -62,13 +62,8 @@ const ConferencesPage: React.FC = () => {
 
   // Add this function
   const handleConferenceClick = (conference: Conference) => {
-    try {
-      // Navigate to conference detail page using the conference name
-      const conferenceId = conference.name.toLowerCase().replace(/\s+/g, '-')
-      navigate(`/conferences/${conferenceId}`)
-    } catch (error) {
-      console.error('Error navigating to conference:', error)
-    }
+    console.log('Clicking conference:', conference.name);
+    navigate(`/conferences/${encodeURIComponent(conference.name)}`);
   }
 
   const filteredConferences = conferences.filter(conference =>

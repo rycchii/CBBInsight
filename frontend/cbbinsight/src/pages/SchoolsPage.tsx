@@ -219,7 +219,7 @@ const SchoolsPage: React.FC = () => {
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
           <input
             type="text"
-            placeholder="Search schools or conferences..."
+            placeholder="Search schools..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"

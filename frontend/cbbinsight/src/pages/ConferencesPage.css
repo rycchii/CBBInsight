@@ -12,7 +12,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('../public/backgrounds/champs.jpg');
+  background-image: url('../backgrounds/champs.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -113,11 +113,11 @@ body {
 
 .search-icon {
   position: absolute;
-  left: 1rem;
-  top: 50%;
+  left: 75%;
+  top: 1.5rem;
   transform: translateY(-50%);
   color: rgba(255, 255, 255, 0.8); /* White icon */
-  font-size: 1.2rem; /* Make it slightly bigger */
+  font-size: .5rem; /* Make it slightly bigger */
   z-index: 5; /* Higher z-index to ensure visibility */
   pointer-events: none; /* Prevent blocking clicks */
 }
@@ -146,31 +146,37 @@ body {
 }
 
 .conference-card {
-  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+  background: rgba(0, 0, 0, 0.8); /* Changed back to black/dark */
   border-radius: 12px;
   padding: 1.25rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2); /* White border for contrast */
+  position: relative;
   min-height: 140px;
-  backdrop-filter: blur(10px); /* Add blur effect */
+  backdrop-filter: blur(10px);
 }
 
 .conference-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   border-color: #ff6b35;
-  background: white;
+  background: rgba(0, 0, 0, 0.9); /* Darker on hover */
 }
 
 .conference-logo {
-  margin-bottom: 0.75rem;
+  position: absolute;
+  top: 0.75em;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 50px;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0rem;
 }
 
 .conference-image {
@@ -199,12 +205,13 @@ body {
 .conference-info h3 {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: white; /* Changed back to white text */
+  margin-top: 4rem;
   margin-bottom: 0.5rem;
 }
 
 .conference-full-name {
-  color: #7f8c8d;
+  color: #ccc; /* Light gray for better contrast on dark background */
   font-size: 0.9rem;
   margin: 0;
 }
@@ -213,15 +220,9 @@ body {
   display: flex;
   gap: 1rem;
   justify-content: center;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   font-size: 0.75rem;
-  color: #666;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
+  color: #bbb; /* Light gray for stats text */
 }
 
 /* Loading and error states */
