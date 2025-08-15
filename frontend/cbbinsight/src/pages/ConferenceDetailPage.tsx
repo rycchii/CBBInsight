@@ -39,78 +39,58 @@ const ConferenceDetailPage: React.FC = () => {
       setLoading(true);
       
       console.log('Conference name from URL:', conferenceName);
-      console.log('Loading test data...');
+      const decodedConferenceName = decodeURIComponent(conferenceName || '');
+      console.log('Decoded conference name:', decodedConferenceName);
       
-      // Create test data to verify the component works
-      const testSchools: School[] = [
-        {
-          name: 'Duke University',
-          players: [
-            { 
-              playerName: 'Test Player 1', 
-              position: 'G', 
-              school_name: 'Duke University', 
-              games_played: 30, 
-              fg_per_game: 15.2, 
-              fg_percentage: 0.456 
-            } as Player,
-            { 
-              playerName: 'Test Player 2', 
-              position: 'F', 
-              school_name: 'Duke University', 
-              games_played: 28, 
-              fg_per_game: 12.8, 
-              fg_percentage: 0.423 
-            } as Player,
-          ],
-          playerCount: 2
-        },
-        {
-          name: 'University of North Carolina',
-          players: [
-            { 
-              playerName: 'Test Player 3', 
-              position: 'C', 
-              school_name: 'UNC', 
-              games_played: 32, 
-              fg_per_game: 18.5, 
-              fg_percentage: 0.512 
-            } as Player,
-            { 
-              playerName: 'Test Player 4', 
-              position: 'G', 
-              school_name: 'UNC', 
-              games_played: 29, 
-              fg_per_game: 14.1, 
-              fg_percentage: 0.389 
-            } as Player,
-          ],
-          playerCount: 2
-        },
-        {
-          name: 'Virginia Tech',
-          players: [
-            { 
-              playerName: 'Test Player 5', 
-              position: 'F', 
-              school_name: 'Virginia Tech', 
-              games_played: 31, 
-              fg_per_game: 16.7, 
-              fg_percentage: 0.467 
-            } as Player,
-          ],
-          playerCount: 1
+      const players = await apiService.getAllPlayers();
+      console.log('Total players fetched:', players.length);
+      
+      // Group all players by school (we'll filter by conference later when we have conference data)
+      const schoolPlayersMap = new Map<string, Player[]>();
+      
+      players.forEach(player => {
+        if (player.school_name) {
+          const schoolName = player.school_name
+            .split('-')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+          
+          if (!schoolPlayersMap.has(schoolName)) {
+            schoolPlayersMap.set(schoolName, []);
+          }
+          schoolPlayersMap.get(schoolName)?.push(player);
         }
-      ];
+      });
+
+      console.log('Unique schools found:', schoolPlayersMap.size);
+      console.log('Schools:', Array.from(schoolPlayersMap.keys()).slice(0, 10));
+
+      // For now, let's show all schools since we don't have conference data in players
+      // Later we can implement proper conference filtering
+      const schoolsData: School[] = Array.from(schoolPlayersMap.entries()).map(([schoolName, schoolPlayers]) => ({
+        name: schoolName,
+        players: schoolPlayers.sort((a, b) => (a.playerName || '').localeCompare(b.playerName || '')),
+        playerCount: schoolPlayers.length
+      }));
+
+      // Sort schools by name and limit to a reasonable number for display
+      schoolsData.sort((a, b) => a.name.localeCompare(b.name));
       
-      console.log('Test schools created:', testSchools);
+      // Show first 20 schools for this conference (you can adjust this)
+      const limitedSchools = schoolsData.slice(0, 20);
       
-      setSchools(testSchools);
+      console.log('Schools to display:', limitedSchools.length);
+      
+      setSchools(limitedSchools);
       setError(null);
       
     } catch (err) {
-      console.error('Error in loadConferenceData:', err);
-      setError('Error loading test data');
+      console.error('Error loading conference data:', err);
+      if (import.meta.env.PROD) {
+        setError('Backend service is currently being deployed. Please try again in a few minutes.');
+      } else {
+        setError('Failed to load conference data. Make sure your Spring Boot backend is running on localhost:8080');
+      }
     } finally {
       setLoading(false);
     }
