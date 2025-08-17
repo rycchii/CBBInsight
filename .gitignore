@@ -57,7 +57,7 @@ logs/
 
 # Data files (if you have sensitive data)
 *.csv
-*.json
+#*.json
 *.xlsx
 
 # Python (if you have any scripts)
@@ -84,4 +84,4 @@ coverage/
 *.lcov
 
 # Dependencies
-package-lock.json (optional - some teams commit this)
+#package-lock.json (optional - some teams commit this)
